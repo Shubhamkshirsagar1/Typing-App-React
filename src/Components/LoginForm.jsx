@@ -34,7 +34,7 @@ const LoginForm = () => {
           progress: undefined,
           theme: "dark",
         });
-        window.location.href = "/dashboard";
+        window.location.href = "/";
         return;
       })
       .catch((err) => {
