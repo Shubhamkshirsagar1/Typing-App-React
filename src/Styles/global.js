@@ -81,4 +81,73 @@ export const GlobalStyles = createGlobalStyle`
    .extra{
      
    }
+
+   .upper-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: auto;
+    font-size:20px;
+    padding: 10px 0px;
+   }
+   .counter{
+    margin-left: 4px;
+   }
+   .modes{
+    display: flex;
+    gap: 10px;
+    margin-right: 43px;
+    align-items: center;
+   }
+   .time-modes{
+    border: 1px solid white;
+    padding:3px;
+   }
+   .time-modes:hover{
+    color:green;
+    border: 1px solid green;
+    cursor:pointer;
+   }
+   .stats-box{
+    display:flex;
+    width:1000px;
+    margin-left:auto;
+    margin-right:auto;
+   }
+   .left{
+    width:30%;
+    border:1px solid yellow;
+   }
+   .right{
+    width:70%;
+    border:1px solid yellow;
+   }
+   .title{
+    font-size:25px;
+   }
+   .subtitle{
+    font-size:20px;
+    color:gold;
+   }
+   .restart{
+    font-size: 40px;
+    margin-top: 5px;
+    border:3px solid white;
+    width:50%;
+    margin:auto;
+    margin-top:50px;
+    cursor: pointer;
+    background-color:green;
+    border-radius: 20px ;
+ }
+ .header{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor:pointer;
+}
 `;
