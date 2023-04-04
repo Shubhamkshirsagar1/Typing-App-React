@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Line } from "react-chartjs-2";
 
 import {
-  CategoryScale,
+  CategoryScale, //x axis
   Chart as ChartJS,
   Legend,
   LineElement,
-  LinearScale,
+  LinearScale, //y axis
   PointElement,
   Title,
   Tooltip,
 } from "chart.js";
+import { ThemeContext } from "../Context/ThemeContext";
 
 ChartJS.register(
   CategoryScale,
@@ -22,22 +23,27 @@ ChartJS.register(
   Legend
 );
 
-const Graphs = ({graphData}) => {
+const Graphs = ({ graphData }) => {
+  const { theme } = useContext(ThemeContext);
   return (
-      <>
-         <Line data={
-        {
-          labels: graphData.map(i=>{return i[0]+1}),
+    <>
+      <Line
+        data={{
+          // x axis
+          labels: graphData.map((i) => {
+            return i[0];
+          }),
+          //y axis
           datasets: [
             {
-              data: graphData.map(i=>i[1]),
-              label: 'wpm',
-              borderColor: 'gold'
-            }
-          ]
-        }
-      } />
-      </>
+              label: "WPM",
+              data: graphData.map((i) => i[1]),
+              borderColor: theme.title,
+            },
+          ],
+        }}
+      />
+    </>
   );
 };
 

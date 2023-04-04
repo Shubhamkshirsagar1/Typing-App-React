@@ -7,7 +7,8 @@ const SignupForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = ({ handleClose }) => {
+    // If input is Empty
     if (!email || !password || !confirmPassword) {
       toast.warn("Fill all details", {
         position: "top-right",
@@ -21,6 +22,8 @@ const SignupForm = () => {
       });
       return;
     }
+    
+    // If paassword does not match
     if (password !== confirmPassword) {
       toast.warn("Password mismatch", {
         position: "top-right",
@@ -48,7 +51,8 @@ const SignupForm = () => {
           progress: undefined,
           theme: "dark",
         });
-        window.location.href = "/";
+        // window.location.href = "/";
+        handleClose();
         return;
       })
       .catch((err) => {

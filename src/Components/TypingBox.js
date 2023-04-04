@@ -1,8 +1,10 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
 import { useTestMode } from "../Context/TestModeContext";
 import UpperMenu from "./UpperMenu";
-var randomWords = require("random-words");
 import Stats from "./Stats";
+
+// Another Way of Importing a Module.
+var randomWords = require("random-words");
 
 const TypingBox = () => {
   const inputRef = useRef(null);
@@ -33,7 +35,7 @@ const TypingBox = () => {
   const wordSpanRef = Array(100)
     .fill(0)
     .map((i) => createRef());
-  // console.log(wordSpanRef);
+  console.log(wordSpanRef);
 
   const startTimer = () => {
     const intervalId = setInterval(timer, 1000);
@@ -45,7 +47,7 @@ const TypingBox = () => {
             return [
               ...currGraphData,
               [
-                testTime - currCountDown,
+                testTime - currCountDown + 1,
                 correctChars / 5 / ((testTime - currCountDown + 1) / 60),
               ],
             ];
@@ -64,7 +66,7 @@ const TypingBox = () => {
     }
   };
 
-  // RESET TEST AS SOON AS USER TRIES TO SET-TIMER LIKE 30s 60s.
+  // RESET TEST AS SOON AS USER TRIES TO SET-TIMER LIKE 30s 60s etc.
   const resetTest = () => {
     clearInterval(intervalId);
     setCountDown(testTime);
@@ -74,13 +76,13 @@ const TypingBox = () => {
     setTestEnd(false);
     setWords(randomWords(500));
     resetWordSpanRef();
-    focusInput();
     setCorrectChars(0);
     setCorrectWords(0);
     setIncorrectChars(0);
     setMissedChars(0);
     setExtraChars(0);
     setGraphData([]);
+    focusInput();
   };
 
   const resetWordSpanRef = () => {
@@ -107,8 +109,7 @@ const TypingBox = () => {
 
     // LOGIC FOR SPACE
     if (e.keyCode === 32) {
-      const correctSpans =
-        wordSpanRef[currWordIndex].current.querySelectorAll(".correct");
+      const correctSpans = wordSpanRef[currWordIndex].current.querySelectorAll(".correct");
       console.log(correctSpans);
       if (correctSpans.length === allChildSpan.length) {
         setCorrectWords(correctWords + 1);
@@ -174,7 +175,7 @@ const TypingBox = () => {
       return;
     }
 
-    // FOR COLOR CHANGE YELLOE AND RED
+    // FOR COLOR CHANGE YELLOW AND RED
     if (
       e.key ===
       wordSpanRef[currWordIndex].current.childNodes[currCharIndex].innerText
@@ -188,6 +189,7 @@ const TypingBox = () => {
       setIncorrectChars(incorrectChars + 1);
     }
 
+    // FOR CHANGE CHARACTER INDEX
     // FOR CURSOR (IF WORLDS LENGTH IS EQUAL TO CURRENTCHAR+ 1 THEN CHANGE CURSOR TO THE RIGHT SIDE OR ELSE LEFT)
     if (currCharIndex + 1 === allChildSpan.length) {
       allChildSpan[currCharIndex].className += " current-right";

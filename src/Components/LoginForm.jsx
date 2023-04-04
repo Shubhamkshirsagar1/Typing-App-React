@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { auth } from "../firebaseConfig";
 
-const LoginForm = () => {
+const LoginForm = ({handleClose}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,7 +34,8 @@ const LoginForm = () => {
           progress: undefined,
           theme: "dark",
         });
-        window.location.href = "/";
+        // window.location.href = "/";
+        handleClose();
         return;
       })
       .catch((err) => {
