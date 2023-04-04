@@ -26,7 +26,7 @@ const Stats = ({
   const pushToDB = () => {
     const resultRef = db.collection("Results");
     const { uid } = auth.currentUser;
-    if (!isNaN(accuracy)) {
+    if (isNaN(accuracy)) {
       toast.error("Invalid Test!!", {
         position: "top-right",
         autoClose: 5000,
